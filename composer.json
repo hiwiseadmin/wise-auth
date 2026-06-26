@@ -1,6 +1,6 @@
 {
     "name": "wiseadmin/wise-auth",
-    "description": "A universal RBAC permission management package for ThinkPHP6, supporting multi-application, multi-user types, role inheritance (RBAC1), and separation of duty constraints (RBAC2 extension).",
+    "description": "WiseAdmin 通用 RBAC 权限管理包 — 支持多应用、多用户类型、角色继承（RBAC1）与职责分离约束（RBAC2）",
     "type": "library",
     "license": "MIT",
     "keywords": [
@@ -47,5 +47,19 @@
         }
     },
     "minimum-stability": "stable",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "homepage": "https://github.com/hiwiseadmin/wise-auth",
+    "archive": {
+        "exclude": [
+            "/tests",
+            "/docs",
+            "/.github",
+            "/phpunit.xml",
+            "/.gitattributes",
+            "/.gitignore",
+            "/*.md",
+            "!/README.md",
+            "/qa/"
+        ]
+    }
 }
