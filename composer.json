@@ -1,6 +1,7 @@
 {
     "name": "wiseadmin/wise-auth",
     "description": "WiseAdmin 通用 RBAC 权限管理包 — 支持多应用、多用户类型、角色继承（RBAC1）与职责分离约束（RBAC2）",
+    "homepage": "https://github.com/hiwiseadmin/wise-auth",
     "type": "library",
     "license": "MIT",
     "keywords": [
@@ -35,6 +36,8 @@
             "wise\\auth\\tests\\": "tests/"
         }
     },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
     "extra": {
         "think": {
             "services": [
@@ -46,9 +49,6 @@
             "migrate-path": "database/migrations"
         }
     },
-    "minimum-stability": "stable",
-    "prefer-stable": true,
-    "homepage": "https://github.com/hiwiseadmin/wise-auth",
     "archive": {
         "exclude": [
             "/tests",
