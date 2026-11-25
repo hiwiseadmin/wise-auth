@@ -1,0 +1,59 @@
+{extend name="__WISE_VIEW__/base" /}
+
+{block name="title"}IP 黑白名单{/block}
+
+{block name="content"}
+<body>
+<div class="container-fluid p-3">
+    <form id="wsForm" action="{:url($isEdit ? 'update' : 'save')}" class="needs-validation" novalidate>
+        {if isset($isEdit) && $isEdit}
+        <input type="hidden" name="id" value="{$row.id|default=0}">
+        {/if}
+
+        <div class="mb-3">
+            <label class="form-label fw-semibold">名单类型 <span class="text-danger">*</span></label>
+            <div class="btn-group w-100" role="group">
+                <input type="radio" class="btn-check" name="type" id="type_blacklist" value="blacklist"
+                    {if !isset($row) || $row.type == 'blacklist'}checked{/if}>
+                <label class="btn btn-outline-danger" for="type_blacklist">
+                    <i class="bi bi-shield-x me-1"></i>黑名单（拦截）
+                </label>
+                <input type="radio" class="btn-check" name="type" id="type_whitelist" value="whitelist"
+                    {if isset($row) && $row.type == 'whitelist'}checked{/if}>
+                <label class="btn btn-outline-success" for="type_whitelist">
+                    <i class="bi bi-shield-check me-1"></i>白名单（放行）
+                </label>
+            </div>
+            <small class="text-muted">
+                <i class="bi bi-info-circle me-1"></i>黑名单禁止访问，白名单仅允许访问
+            </small>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label fw-semibold">
+                IP / CIDR <span class="text-danger">*</span>
+            </label>
+            <input type="text" class="form-control" id="cidr" name="cidr"
+                value="{$row.cidr|default=''}"
+                placeholder="如：192.168.1.1 或 10.0.0.0/8"
+                data-validation="required"
+                {if isset($isEdit) && $isEdit}readonly{/if}>
+            {if isset($isEdit) && $isEdit}
+            <small class="text-warning"><i class="bi bi-lock me-1"></i>IP/CIDR 创建后不可修改</small>
+            {/if}
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label fw-semibold">备注</label>
+            <textarea class="form-control" id="remark" name="remark" rows="2"
+                placeholder="可选，记录说明">{$row.remark|default=''}</textarea>
+        </div>
+
+        <div class="alert alert-light small mb-0">
+            <i class="bi bi-lightning-charge text-warning me-1"></i>
+            更改即时生效。如需刷新缓存请使用工具栏「刷新缓存」按钮。
+        </div>
+        {include file="__WISE_VIEW__/submit" /}
+    </form>
+</div>
+{/block}

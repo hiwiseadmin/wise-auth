@@ -1,0 +1,66 @@
+{extend name="__WISE_VIEW__/base" /}
+
+{block name="title"}设备详情{/block}
+
+{block name="content"}
+<body>
+<div class="container p-4">
+    <h5 class="mb-3 border-bottom pb-2">设备信息</h5>
+    <div class="row align-items-center">
+        <div class="col-3 p-2 text-end">ID</div>
+        <div class="col p-2">{$device.id}</div>
+    </div>
+    <div class="row align-items-center">
+        <div class="col-3 p-2 text-end">用户ID</div>
+        <div class="col p-2">{$device.user_id}</div>
+    </div>
+    <div class="row align-items-center">
+        <div class="col-3 p-2 text-end">设备名称</div>
+        <div class="col p-2">{$device.device_name|default='未命名'}</div>
+    </div>
+    <div class="row align-items-center">
+        <div class="col-3 p-2 text-end">设备指纹</div>
+        <div class="col p-2"><code>{$device.device_fingerprint}</code></div>
+    </div>
+    <div class="row align-items-center">
+        <div class="col-3 p-2 text-end">最近IP</div>
+        <div class="col p-2">{$device.ip|default=''}</div>
+    </div>
+    <div class="row align-items-center">
+        <div class="col-3 p-2 text-end">User-Agent</div>
+        <div class="col p-2" style="word-break: break-all;">{$device.user_agent|default=''}</div>
+    </div>
+    <div class="row align-items-center">
+        <div class="col-3 p-2 text-end">信任状态</div>
+        <div class="col p-2">
+            {if $device.is_trusted}
+            <span class="badge bg-success">已信任</span>
+            {else /}
+            <span class="badge bg-danger">未信任</span>
+            {/if}
+        </div>
+    </div>
+    {if $device.is_trusted}
+    <div class="row align-items-center">
+        <div class="col-3 p-2 text-end">信任时间</div>
+        <div class="col p-2">{$device.trusted_at ? date('Y-m-d H:i:s', $device.trusted_at) : ''}</div>
+    </div>
+    <div class="row align-items-center">
+        <div class="col-3 p-2 text-end">信任到期</div>
+        <div class="col p-2">{$device.trust_expire_at ? date('Y-m-d H:i:s', $device.trust_expire_at) : ''}</div>
+    </div>
+    {/if}
+    <div class="row align-items-center">
+        <div class="col-3 p-2 text-end">最后使用</div>
+        <div class="col p-2">{$device.last_used_at ? date('Y-m-d H:i:s', $device.last_used_at) : ''}</div>
+    </div>
+    <div class="row align-items-center">
+        <div class="col-3 p-2 text-end">创建时间</div>
+        <div class="col p-2">{$device.create_time}</div>
+    </div>
+    <div class="row align-items-center">
+        <div class="col-3 p-2 text-end">更新时间</div>
+        <div class="col p-2">{$device.update_time}</div>
+    </div>
+</div>
+{/block}
